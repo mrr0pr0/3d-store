@@ -1,19 +1,53 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
-import { products } from '@/data/placeholder';
 import { FiShoppingCart, FiArrowLeft } from 'react-icons/fi';
 
 export default function ProductPage({ params }) {
   const resolvedParams = use(params);
   const { addToCart } = useCart();
-  
-  const product = products.find((p) => p.id === parseInt(resolvedParams.id));
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (!product) {
+  useEffect(() => {
+    fetchProduct();
+  }, [resolvedParams.id]);
+
+  const fetchProduct = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`/api/products/${resolvedParams.id}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch product');
+      }
+      
+      const data = await response.json();
+      setProduct(data);
+    } catch (err) {
+      console.error('Error fetching product:', err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent mx-auto"></div>
+          <p className="text-muted-foreground">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !product) {
     return (
       <div className="space-y-8">
         <Link
@@ -26,7 +60,7 @@ export default function ProductPage({ params }) {
         <div className="text-center py-12">
           <h1 className="text-2xl font-bold text-foreground">Product not found</h1>
           <p className="text-muted-foreground mt-2">
-            The product youre looking for doesnt exist.
+            The product you're looking for doesn't exist.
           </p>
         </div>
       </div>
@@ -70,13 +104,10 @@ export default function ProductPage({ params }) {
             <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
               {product.name}
             </h1>
-            <p className="mt-2 text-sm text-muted-foreground uppercase tracking-wide">
-              {product.category}
-            </p>
           </div>
 
           <div className="text-3xl font-bold text-primary">
-            ${product.price.toFixed(2)}
+            ${parseFloat(product.price).toFixed(2)}
           </div>
 
           <div className="prose prose-invert">
@@ -85,17 +116,9 @@ export default function ProductPage({ params }) {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">Availability:</span>
-            <span className={`text-sm font-medium ${product.inStock ? 'text-green-500' : 'text-destructive'}`}>
-              {product.inStock ? 'In Stock' : 'Out of Stock'}
-            </span>
-          </div>
-
           <button
             onClick={handleAddToCart}
-            disabled={!product.inStock}
-            className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-4 rounded-md hover:bg-primary/90 transition-colors font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-4 rounded-md hover:bg-primary/90 transition-colors font-medium text-lg"
           >
             <FiShoppingCart />
             Add to Cart

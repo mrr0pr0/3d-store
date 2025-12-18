@@ -3,20 +3,9 @@ import { supabase } from '@/lib/supabaseClient';
 
 export async function GET(request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const category = searchParams.get('category');
-
-    let query = supabase
+    const { data, error } = await supabase
       .from('app_cbdf7_products')
-      .select('*')
-      .eq('is_active', true)
-      .order('created_at', { ascending: false });
-
-    if (category) {
-      query = query.eq('category', category);
-    }
-
-    const { data, error } = await query;
+      .select('*');
 
     if (error) {
       console.error('Error fetching products:', error);
