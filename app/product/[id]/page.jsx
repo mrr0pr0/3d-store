@@ -60,7 +60,7 @@ export default function ProductPage({ params }) {
         <div className="text-center py-12">
           <h1 className="text-2xl font-bold text-foreground">Product not found</h1>
           <p className="text-muted-foreground mt-2">
-            The product you're looking for doesn't exist.
+            The product you&apos;re looking for doesn&apos;t exist.
           </p>
         </div>
       </div>
