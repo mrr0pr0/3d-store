@@ -94,7 +94,7 @@ export default function CheckoutPage() {
                 <input
                   type="text"
                   className="w-full bg-background border border-border rounded-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="123 Main St"
+                  placeholder="Street address, house number"
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -105,28 +105,32 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     className="w-full bg-background border border-border rounded-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="New York"
+                    placeholder="Oslo"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    State
+                    Postal code
                   </label>
                   <input
                     type="text"
                     className="w-full bg-background border border-border rounded-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="NY"
+                    inputMode="numeric"
+                    pattern="\d{4}"
+                    maxLength={4}
+                    placeholder="0150"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    ZIP Code
+                    Country
                   </label>
-                  <input
-                    type="text"
+                  <select
+                    defaultValue="NO"
                     className="w-full bg-background border border-border rounded-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="10001"
-                  />
+                  >
+                    <option value="NO">Norway</option>
+                  </select>
                 </div>
               </div>
             </form>
