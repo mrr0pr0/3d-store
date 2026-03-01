@@ -15,13 +15,15 @@ export async function GET(request) {
 
     const { data, error } = await supabase
       .from('app_cbdf7_orders')
-      .select(`
+      .select(
+        `
         *,
         order_items:app_cbdf7_order_items(
           *,
           product:app_cbdf7_products(*)
         )
-      `)
+      `
+      )
       .eq('user_id', userId)
       .order('created_at', { ascending: false });
 
@@ -56,7 +58,10 @@ export async function POST(request) {
     }
 
     // Calculate total amount
-    const total_amount = items.reduce((sum, item) => sum + (item.unit_price * item.quantity), 0);
+    const total_amount = items.reduce(
+      (sum, item) => sum + item.unit_price * item.quantity,
+      0
+    );
 
     // Create order
     const { data: orderData, error: orderError } = await supabase

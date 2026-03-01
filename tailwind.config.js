@@ -36,7 +36,8 @@ module.exports = {
         },
         destructive: {
           DEFAULT: 'rgb(var(--color-destructive) / <alpha-value>)',
-          foreground: 'rgb(var(--color-destructive-foreground) / <alpha-value>)',
+          foreground:
+            'rgb(var(--color-destructive-foreground) / <alpha-value>)',
         },
         border: 'rgb(var(--color-border) / <alpha-value>)',
         input: 'rgb(var(--color-input) / <alpha-value>)',
@@ -45,4 +46,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

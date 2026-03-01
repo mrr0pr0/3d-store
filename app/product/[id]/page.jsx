@@ -21,11 +21,11 @@ export default function ProductPage({ params }) {
     try {
       setLoading(true);
       const response = await fetch(`/api/products/${resolvedParams.id}`);
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch product');
       }
-      
+
       const data = await response.json();
       setProduct(data);
     } catch (err) {
@@ -58,7 +58,9 @@ export default function ProductPage({ params }) {
           Back to Shop
         </Link>
         <div className="text-center py-12">
-          <h1 className="text-2xl font-bold text-foreground">Product not found</h1>
+          <h1 className="text-2xl font-bold text-foreground">
+            Product not found
+          </h1>
           <p className="text-muted-foreground mt-2">
             The product you&apos;re looking for doesn&apos;t exist.
           </p>

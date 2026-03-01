@@ -152,7 +152,7 @@ export default function CheckoutPage() {
             <h2 className="text-xl font-bold text-foreground mb-4">
               Order Summary
             </h2>
-            
+
             <div className="space-y-3 mb-6">
               {cart.map((item) => (
                 <div key={item.id} className="flex justify-between text-sm">
@@ -164,7 +164,7 @@ export default function CheckoutPage() {
                   </span>
                 </div>
               ))}
-              
+
               <div className="border-t border-border pt-3 flex justify-between text-muted-foreground">
                 <span>Subtotal</span>
                 <span>${total.toFixed(2)}</span>
@@ -179,9 +179,7 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <button
-              className="block w-full bg-primary text-primary-foreground text-center px-6 py-3 rounded-md hover:bg-primary/90 transition-colors font-medium"
-            >
+            <button className="block w-full bg-primary text-primary-foreground text-center px-6 py-3 rounded-md hover:bg-primary/90 transition-colors font-medium">
               Place Order
             </button>
           </div>

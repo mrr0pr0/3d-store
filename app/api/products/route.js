@@ -28,7 +28,15 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, description, price, model_url, thumbnail_url, category, stock_quantity } = body;
+    const {
+      name,
+      description,
+      price,
+      model_url,
+      thumbnail_url,
+      category,
+      stock_quantity,
+    } = body;
 
     if (!name || !price || !model_url) {
       return NextResponse.json(

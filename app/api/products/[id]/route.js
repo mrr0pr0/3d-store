@@ -13,10 +13,7 @@ export async function GET(request, { params }) {
 
     if (error) {
       console.error('Error fetching product:', error);
-      return NextResponse.json(
-        { error: 'Product not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
 
     return NextResponse.json(data);

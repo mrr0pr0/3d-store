@@ -57,7 +57,7 @@ export default function CartPage() {
             <h2 className="text-xl font-bold text-foreground mb-4">
               Order Summary
             </h2>
-            
+
             <div className="space-y-3 mb-6">
               <div className="flex justify-between text-muted-foreground">
                 <span>Subtotal</span>

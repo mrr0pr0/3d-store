@@ -7,22 +7,21 @@ export async function GET(request, { params }) {
 
     const { data, error } = await supabase
       .from('app_cbdf7_orders')
-      .select(`
+      .select(
+        `
         *,
         order_items:app_cbdf7_order_items(
           *,
           product:app_cbdf7_products(*)
         )
-      `)
+      `
+      )
       .eq('id', id)
       .single();
 
     if (error) {
       console.error('Error fetching order:', error);
-      return NextResponse.json(
-        { error: 'Order not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Order not found' }, { status: 404 });
     }
 
     return NextResponse.json(data);

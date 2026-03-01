@@ -64,17 +64,27 @@ export default function HomePage() {
       {/* Intro Text */}
       <div className="prose prose-invert max-w-none">
         <p className="text-xl leading-relaxed text-muted-foreground">
-          Welcome to <strong>3D Store</strong>, your destination for cutting-edge 3D printed furniture and home decor. 
-          Explore our collection of{' '}
-          <Link href="/shop?category=furniture" className="text-primary hover:underline">
+          Welcome to <strong>3D Store</strong>, your destination for
+          cutting-edge 3D printed furniture and home decor. Explore our
+          collection of{' '}
+          <Link
+            href="/shop?category=furniture"
+            className="text-primary hover:underline"
+          >
             Furniture
           </Link>
           ,{' '}
-          <Link href="/shop?category=lighting" className="text-primary hover:underline">
+          <Link
+            href="/shop?category=lighting"
+            className="text-primary hover:underline"
+          >
             Lighting
           </Link>
           , and{' '}
-          <Link href="/shop?category=decor" className="text-primary hover:underline">
+          <Link
+            href="/shop?category=decor"
+            className="text-primary hover:underline"
+          >
             Decor
           </Link>{' '}
           designed to transform your living space.
@@ -100,10 +110,18 @@ export default function HomePage() {
         </h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { name: 'Furniture', href: '/shop?category=furniture', emoji: '🪑' },
+            {
+              name: 'Furniture',
+              href: '/shop?category=furniture',
+              emoji: '🪑',
+            },
             { name: 'Lighting', href: '/shop?category=lighting', emoji: '💡' },
             { name: 'Decor', href: '/shop?category=decor', emoji: '🎨' },
-            { name: 'Accessories', href: '/shop?category=accessories', emoji: '📦' },
+            {
+              name: 'Accessories',
+              href: '/shop?category=accessories',
+              emoji: '📦',
+            },
           ].map((category) => (
             <Link
               key={category.name}

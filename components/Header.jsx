@@ -13,11 +13,9 @@ export default function Header() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex w-full justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="font-bold text-xl text-primary">
-              3D STORE
-            </span>
+            <span className="font-bold text-xl text-primary">3D STORE</span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             <Link
               href="/"

@@ -7,16 +7,14 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function checkProducts() {
   console.log('Checking products in database...\n');
-  
-  const { data, error } = await supabase
-    .from('app_cbdf7_products')
-    .select('*');
-  
+
+  const { data, error } = await supabase.from('app_cbdf7_products').select('*');
+
   if (error) {
     console.error('Error fetching products:', error);
     return;
   }
-  
+
   if (!data || data.length === 0) {
     console.log('No products found in database.');
     console.log('\nYou need to run the SQL schema to create sample products.');
@@ -24,7 +22,7 @@ async function checkProducts() {
     console.log('File location: /workspace/sql/store.sql');
     return;
   }
-  
+
   console.log(`Found ${data.length} products:\n`);
   data.forEach((product, index) => {
     console.log(`${index + 1}. ${product.name}`);
